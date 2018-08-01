@@ -10,16 +10,31 @@
 				window.location = "./quiz.html";
 			}
 		</script>
+
+		<!-- Load bootstrap -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+			<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+			<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 	</head>
 	<body>	
 
-		
-		<h2>Welcome to this quiz application</h2>
-		<h4>Instructions</h4>
+		<div align="center">
+			
+			<h4><b>Instructions for this quiz</b></h4>
 
-		<p>Click on the option you like is correct and hit save.</p>
-		<p>Upon hitting save, the color of this button will change to green. It indicates that the answer you have marked has been recorded</p>
-		<button type="button" onclick="start_quiz();">Click here to start the quiz!</button>
+			<p>There are 5 questions</p>
+			<p>Each question carries 10 marks</p>
+			<p>Total time limit provided: <b>60ses</b></p>
 
+			<br>
+
+			<button type="button" class="btn btn-success" onclick="start_quiz();">Click here to start the quiz!</button>
+		</div>	
 	</body>
 </html>

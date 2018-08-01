@@ -4,22 +4,50 @@
 		
 		<script type="text/javascript" src="script.js"></script> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<!-- Load bootstrap -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+			<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+			<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<style type="text/css">
+			form {
+				
+				width: 35%;
+
+			}
+			body {
+				
+			}
+			#container {
+				background-color: #D3D3D3;
+				width:600px;
+    			margin: auto;
+			}
+
+		</style>
 	</head>
 	<body>	
 
-		<form action="./home.html">
-			Username : <input id="username" type="text" required />
-			password : <input id="password" type="password" required />
-
-			<input type="submit" onclick="return validate();">
-		</form>
-
-
-		<script>
-			//var mydata = JSON.parse(data);
-			//console.log(mydata[1]);
-
-		</script>
-
+		<div id="container" align="center">
+			<h2 align="center">Quiz</h2>
+			<h4><b>Login Credentials</b></h4> <br>
+			<form action="./home.html" padding-left: 50px;">
+				<div class="form-group">
+			    	<label >Enter your Username</label>
+			    	<input type="text" class="form-control" id="username" placeholder="Your username" >
+			  	</div>
+			  	<div class="form-group">
+			    	<label>Enter your Password</label>
+			    	<input type="password" class="form-control" id="password" placeholder="Your Password">
+			  	</div>
+			  	<button type="button" class="btn btn-default" onclick="return validate();">Submit</button>
+			</form>
+		</div>
 	</body>
 </html>

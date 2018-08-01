@@ -13,7 +13,7 @@ function validate() {
 	}
 
 	alert("Login Successful");
-	window.location()
+	window.location="./home.html";
 	//Create a random order for questions
 	var arr= [1,2,3,4,5];
 	arr = shuffle(arr);

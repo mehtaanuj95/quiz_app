@@ -5,6 +5,25 @@
 		<script type="text/javascript" src="script.js"></script> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+		<!-- Load bootstrap -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<style type="text/css">
+			 #container {
+			 	padding-left: 50px;
+			 	padding-top: 15px;
+			 }
+		</style>
+
+
+
 		<script type="text/javascript">
 		
 			
@@ -30,7 +49,7 @@
 				document.getElementById("nextclick").style.visibility = "hidden";
 				document.getElementById("prevclick").style.visibility = "hidden";
 		
-				document.getElementById("question").innerHTML = "Current Question: "+index;
+				document.getElementById("question").innerHTML = "Question_# : "+index;
 
 				document.getElementById("ques1").innerHTML = data[index].name[0];
 				document.getElementById("option1").value = data[index].name[1];
@@ -116,52 +135,49 @@
 	<body>	
 
 
-		<h1 id="question"></h1>
-
-		<h4 id="ques1">ques1 here</h4>
-		<table>
-			<tr>
-				<td>
-					<input type="radio" value="" name="option" id="option1" onclick="save()" />
-				</td>
-				<td>
-					<p id="option1p">a</p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="radio" value="" name="option" id="option2" onclick="save()"/>
-				</td>
-				<td>
-					<p id="option2p">a</p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="radio" value="" name="option" id="option3" onclick="save()"/>
-				</td>
-				<td>
-					<p id="option3p">a</p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="radio" value="" name="option" id="option4" onclick="save()"/>
-				</td>
-				<td>
-					<p id="option4p">a</p>
-				</td>
-			</tr>
-		</table>
-		
-		
-		
-		
-
-		<button id="prevclick" onclick="prev()">prev</button>
-		<button id="nextclick" onclick="next()">Next</button>
-		<button id="submitclick" onclick="submit()">submit</button>
-		
+		<div id="container">
+			<label>
+				<kbd id="timer"></kbd>
+			</label>
+			
+			<label id="question">
+			</label>
+			<br><br>
+			<label id="ques1">
+			</label>
+			<div class="radio">
+			  	<label>
+			    	<input type="radio" value="" name="option" id="option1" onclick="save()" />
+			    	<p id="option1p">Option one is this and that&mdash;be sure to include why it's great </p>
+			  	</label>
+			</div>
+			<div class="radio">
+			  	<label>
+			    	<input type="radio" value="" name="option" id="option2" onclick="save()"/>
+			    	<p id="option2p">Option two can be something else and selecting it will deselect option one</p>
+			  	</label>
+			</div>
+			<div class="radio">
+			  	<label>
+			    	<input type="radio" value="" name="option" id="option3" onclick="save()"/>
+			    	<p id="option3p">Option three is disabled </p>
+			  	</label>
+			</div>
+			<div class="radio">
+			  	<label>
+			    	<input type="radio" value="" name="option" id="option4" onclick="save()"/>
+			    	<p id="option4p">Option three is disabled </p>
+			  	</label>
+			</div>
+				
+			<button id="prevclick" class="btn btn-primary" onclick="prev()">prev</button>
+			<button id="nextclick" class="btn btn-success" onclick="next()">Next</button>
+			<button id="submitclick" class="btn btn-warning" onclick="submit()">submit</button>
+			
+			
+			
+			
+		</div>
 		<script>
 			//var mydata = JSON.parse(data);
 			//console.log(mydata[1]);
@@ -191,7 +207,7 @@
 	 	
 			};
 		</script>
-		<p id="timer"></p>
+		
 		
 	</body>
 </html>
