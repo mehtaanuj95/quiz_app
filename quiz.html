@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="data.json"></script> 
+		<script type="text/javascript" src="script.js"></script> 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<script type="text/javascript">
+		
+			
+			function shuffle(array) {
+			  var currentIndex = array.length, temporaryValue, randomIndex;
+
+			  while (0 !== currentIndex) {
+
+			    randomIndex = Math.floor(Math.random() * currentIndex);
+			    currentIndex -= 1;
+
+			    temporaryValue = array[currentIndex];
+			    array[currentIndex] = array[randomIndex];
+			    array[randomIndex] = temporaryValue;
+			  }
+
+			  return array;
+			}
+
+			function populateData(index, data) {
+
+				//by default till the user does not hit save, next and previous will be hidden
+				document.getElementById("nextclick").style.visibility = "hidden";
+				document.getElementById("prevclick").style.visibility = "hidden";
+
+				document.getElementById("saveclick").style.backgroundColor = "#D3D3D3";
+
+				
+				document.getElementById("question").innerHTML = "Current Question: "+index;
+
+				document.getElementById("ques1").innerHTML = data[index].name[0];
+				document.getElementById("option1").value = data[index].name[1];
+				document.getElementById("option2").value = data[index].name[2];
+				document.getElementById("option3").value = data[index].name[3];
+				document.getElementById("option4").value = data[index].name[4];
+				document.getElementById("option1p").innerHTML = data[index].name[1];
+				document.getElementById("option2p").innerHTML = data[index].name[2];
+				document.getElementById("option3p").innerHTML = data[index].name[3];
+				document.getElementById("option4p").innerHTML = data[index].name[4];
+
+			}
+			function next() {
+
+
+				localStorage.index = Number(localStorage.index)+1;
+				let data = JSON.parse(localStorage.d);
+				let index = Number(localStorage.index);
+				
+				
+				populateData(index, data);
+				
+				
+			}
+			function prev() {
+				localStorage.index = Number(localStorage.index)-1;
+				let data = JSON.parse(localStorage.d);
+				let index = Number(localStorage.index);
+				populateData(index, data);
+			}
+			function save() {
+				//style.backgroundColor = "#7FFF00"
+				let data = JSON.parse(localStorage.d);
+				let index = Number(localStorage.index);
+
+				//Turn on the visibility of next button if its not the last page
+				if(index != 4) {
+					document.getElementById("nextclick").style.visibility = "visible";
+				}
+
+				//Turn on the visibility of prev button if its not the first page
+				if(index != 0) {
+					document.getElementById("prevclick").style.visibility = "visible";
+				}
+				
+				//Change the color of save button
+				document.getElementById("saveclick").style.backgroundColor = "#7FFF00";
+				
+				let answer = document.querySelector('input[name = "option"]:checked').value;
+
+				if(answer == data[index].name[5]) {
+					if(data[index].name[6] == "no" || data[index].name[6] == "yes") {
+						localStorage.points = Number(localStorage.points)+1;
+						data[index].name[6] = "correct";
+					}
+				}
+				else {
+					data[index].name[6] = "yes";
+				}
+
+			}
+			function submit() {
+
+				//display the total score
+				document.getElementById("question").innerHTML = "Your Score is : " + Number(localStorage.points);
+				
+				//.style.visibility = "hidden";
+				document.getElementById("ques1").style.visibility = "hidden";
+				document.getElementById("option1").style.visibility = "hidden";
+				document.getElementById("option2").style.visibility = "hidden";
+				document.getElementById("option3").style.visibility = "hidden";
+				document.getElementById("option4").style.visibility = "hidden";
+				document.getElementById("option1p").style.visibility = "hidden";
+				document.getElementById("option2p").style.visibility = "hidden";
+				document.getElementById("option3p").style.visibility = "hidden";
+				document.getElementById("option4p").style.visibility = "hidden";
+				document.getElementById("nextclick").style.visibility = "hidden";
+				document.getElementById("saveclick").style.visibility = "hidden";
+				document.getElementById("prevclick").style.visibility = "hidden";
+				document.getElementById("submitclick").style.visibility = "hidden";
+				document.getElementById("timer").style.visibility = "hidden";
+			}
+			
+ 
+		</script>
+	</head>
+	<body>	
+
+
+		<h1 id="question"></h1>
+
+		<h4 id="ques1">ques1 here</h4>
+		<input type="radio" value="" name="option" id="option1"/><p id="option1p">a</p>
+		<input type="radio" value="" name="option" id="option2"/><p id="option2p">a</p>
+		<input type="radio" value="" name="option" id="option3"/><p id="option3p">a</p>
+		<input type="radio" value="" name="option" id="option4"/><p id="option4p">a</p>
+
+		<button id="prevclick" onclick="prev()">prev</button>
+		<button id="nextclick" onclick="next()">Next</button>
+		
+		<button id="saveclick" onclick="save()">save</button>
+		<button id="submitclick" onclick="submit()">submit</button>
+		
+		<script>
+			//var mydata = JSON.parse(data);
+			//console.log(mydata[1]);
+			window.onload = function(){
+			  	
+				
+				var timer = 60000;
+				setInterval(function(){
+					timer-=1000;
+					document.getElementById("timer").innerHTML="00:"+(timer/1000);
+					if(timer===0) {
+						submit();
+					}
+				}, 1000); 
+
+
+				//Set Current page index to 0
+			  	localStorage.index = 0;
+			  	localStorage.points = 0;
+
+			  	var arr = [0,1,2,3,4];
+			  	arr = shuffle(arr);
+
+			  	let data = JSON.parse(localStorage.d);
+			  	let index = Number(localStorage.index);
+			  	populateData(index, data);
+
+			  	
+			 	
+			};
+		</script>
+		<p id="timer"></p>
+		
+	</body>
+</html>
