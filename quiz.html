@@ -29,10 +29,7 @@
 				//by default till the user does not hit save, next and previous will be hidden
 				document.getElementById("nextclick").style.visibility = "hidden";
 				document.getElementById("prevclick").style.visibility = "hidden";
-
-				document.getElementById("saveclick").style.backgroundColor = "#D3D3D3";
-
-				
+		
 				document.getElementById("question").innerHTML = "Current Question: "+index;
 
 				document.getElementById("ques1").innerHTML = data[index].name[0];
@@ -79,9 +76,6 @@
 					document.getElementById("prevclick").style.visibility = "visible";
 				}
 				
-				//Change the color of save button
-				document.getElementById("saveclick").style.backgroundColor = "#7FFF00";
-				
 				let answer = document.querySelector('input[name = "option"]:checked').value;
 
 				if(answer == data[index].name[5]) {
@@ -111,7 +105,6 @@
 				document.getElementById("option3p").style.visibility = "hidden";
 				document.getElementById("option4p").style.visibility = "hidden";
 				document.getElementById("nextclick").style.visibility = "hidden";
-				document.getElementById("saveclick").style.visibility = "hidden";
 				document.getElementById("prevclick").style.visibility = "hidden";
 				document.getElementById("submitclick").style.visibility = "hidden";
 				document.getElementById("timer").style.visibility = "hidden";
@@ -126,15 +119,47 @@
 		<h1 id="question"></h1>
 
 		<h4 id="ques1">ques1 here</h4>
-		<input type="radio" value="" name="option" id="option1"/><p id="option1p">a</p>
-		<input type="radio" value="" name="option" id="option2"/><p id="option2p">a</p>
-		<input type="radio" value="" name="option" id="option3"/><p id="option3p">a</p>
-		<input type="radio" value="" name="option" id="option4"/><p id="option4p">a</p>
+		<table>
+			<tr>
+				<td>
+					<input type="radio" value="" name="option" id="option1" onclick="save()" />
+				</td>
+				<td>
+					<p id="option1p">a</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" value="" name="option" id="option2" onclick="save()"/>
+				</td>
+				<td>
+					<p id="option2p">a</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" value="" name="option" id="option3" onclick="save()"/>
+				</td>
+				<td>
+					<p id="option3p">a</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" value="" name="option" id="option4" onclick="save()"/>
+				</td>
+				<td>
+					<p id="option4p">a</p>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+		
 
 		<button id="prevclick" onclick="prev()">prev</button>
 		<button id="nextclick" onclick="next()">Next</button>
-		
-		<button id="saveclick" onclick="save()">save</button>
 		<button id="submitclick" onclick="submit()">submit</button>
 		
 		<script>
@@ -163,9 +188,7 @@
 			  	let data = JSON.parse(localStorage.d);
 			  	let index = Number(localStorage.index);
 			  	populateData(index, data);
-
-			  	
-			 	
+	 	
 			};
 		</script>
 		<p id="timer"></p>
