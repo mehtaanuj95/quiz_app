@@ -49,7 +49,7 @@
 				document.getElementById("nextclick").style.visibility = "hidden";
 				document.getElementById("prevclick").style.visibility = "hidden";
 		
-				document.getElementById("question").innerHTML = "Question_# : "+index;
+				document.getElementById("question").innerHTML = "Question_# : "+(index+1);
 
 				document.getElementById("ques1").innerHTML = data[index].name[0];
 				document.getElementById("option1").value = data[index].name[1];
@@ -104,6 +104,9 @@
 					}
 				}
 				else {
+					if(data[index].name[6] == "correct") {
+						localStorage.points = Number(localStorage.points)-1;
+					}
 					data[index].name[6] = "yes";
 				}
 
@@ -112,7 +115,7 @@
 
 				let score = Number(localStorage.points);
 				//display the total score
-				document.getElementById("question").innerHTML = "Your Score is : <mark>" + score + "</mark><br>";
+				document.getElementById("question").innerHTML = "Your Score is : <mark>" + score*10 + "</mark><br>";
 				
 				let times = Number(localStorage.times)+1;
 				console.log("times : "+times);
@@ -126,7 +129,7 @@
 				console.log(score_overall);
 				let str_print = "";
 				for(let i = 1; i < score_overall.length; i++) {
-					str_print += "Submission_# : <mark>"+i+"</mark>     Score : <mark>"+score_overall[i]+"</mark> <br>";
+					str_print += "Submission_# : <mark>"+i+"</mark>     Score : <mark>"+score_overall[i]*10+"</mark> <br>";
 				}
 				document.getElementById("ques1").innerHTML = str_print;
 				
@@ -203,7 +206,7 @@
 			window.onload = function(){
 			  	
 				
-				var timer = 10000;
+				var timer = 60000;
 				setInterval(function(){
 					timer-=1000;
 					document.getElementById("timer").innerHTML="00:"+(timer/1000);
