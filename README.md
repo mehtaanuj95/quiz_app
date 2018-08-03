@@ -24,8 +24,9 @@ localStorage.d = data;
 ### Setting up Login Credentials:
 Write the following statements in console of Developer tools of Chrome.
 ```
-localStorage.username = "Your_Name";
-localStorage.password = "Password_of_your_choise";
+let userdata = [];
+userdata.push({username: "any_username", password: "any_password"});
+localStorage.userdata = JSON.stringify(userdata);
 ``` 
 
 ### Setting up Score Details:
@@ -43,9 +44,14 @@ Write the following statements in console of Developer tools of Chrome before th
 - [x] Score generation
 - [x] Submission history
 - [x] navigation during quiz 
+- [x] registeration form
+- [ ] navigation Bar
+- [ ] weka
+
 
 **Issues**
 - [x] correct->incorrect => -1
 - [x] one radio button always checked 
 - [x] Chart generation
+- [ ] use display=none insted of visibility = hidden
 

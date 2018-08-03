@@ -23,6 +23,14 @@
 			 	padding-left: 50px;
 			 	padding-top: 15px;
 			 }
+
+			 #outer {
+			 	width:100%;
+    			text-align: center;
+			 }
+			 .inner {
+			 	 display: inline-block;
+			 }
 		</style>
 
 
@@ -240,11 +248,11 @@
 			    	<p id="option4p">Option three is disabled </p>
 			  	</label>
 			</div>
-				
-			<button id="prevclick" class="btn btn-primary" onclick="prev()">prev</button>
-			<button id="nextclick" class="btn btn-success" onclick="next()">Next</button>
-			<button id="submitclick" class="btn btn-warning" onclick="submit()">submit</button>
-			
+			<div id="outer_button">	
+				<button id="prevclick" class="btn btn-primary inner" onclick="prev()">prev</button>
+				<button id="nextclick" class="btn btn-success inner" onclick="next()">Next</button>
+				<button id="submitclick" class="btn btn-warning inner" onclick="submit()">submit</button>
+			</div>
 			
 			
 			<div id="chartContainer" style="height: 300px; width: 60%;"></div>
