@@ -1,6 +1,4 @@
-data = '[{"name": ["What is Capital of India", "Mumbai", "Chennai", "Kolkata", "Delhi", "Delhi", "no"]},	{"name": ["What is Capital of China", "shanghai", "beijing", "macao", "tibbet", "beijing", "no"]},{"name": ["What is Capital of USA", "washinton_dc", "new_york", "cancas", "los_angeles", "washinton_dc", "no"]},{"name": ["What is Capital of Australia", "sydney", "canberra", "some_city", "kangaroo", "canberra", "no"]},{"name": ["What is Capital of Japan", "osaka", "kyoto", "tokyo", "hiroshima", "tokyo", "no"]}]';
+data = '[{"name": ["What is Capital of India", "Mumbai", "Chennai", "Kolkata", "Delhi", "Delhi"]},	{"name": ["What is Capital of China", "shanghai", "beijing", "macao", "tibbet", "beijing"]},{"name": ["What is Capital of USA", "washinton_dc", "new_york", "cancas", "los_angeles", "washinton_dc"]},{"name": ["What is Capital of Australia", "sydney", "canberra", "some_city", "kangaroo", "canberra"]},{"name": ["What is Capital of Japan", "osaka", "kyoto", "tokyo", "hiroshima", "tokyo"]}]';
 
 
 data = '[{"score": ["0"]},{"score": ["0"]}]';
-
-localStorage.score = ",0,0,2,0,5"

@@ -15,21 +15,10 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-		<!-- Canvas.js CDN-->
-		<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
 		<style type="text/css">
 			 #container {
 			 	padding-left: 50px;
 			 	padding-top: 15px;
-			 }
-
-			 #outer {
-			 	width:100%;
-    			text-align: center;
-			 }
-			 .inner {
-			 	 display: inline-block;
 			 }
 		</style>
 
@@ -60,16 +49,8 @@
 				document.getElementById("nextclick").style.visibility = "hidden";
 				document.getElementById("prevclick").style.visibility = "hidden";
 		
-				//set all radio buttons as unchecked
-				document.getElementById('option1').checked = false;
-				document.getElementById('option2').checked = false;
-				document.getElementById('option3').checked = false;
-				document.getElementById('option4').checked = false;
-
-				//Question Number
 				document.getElementById("question").innerHTML = "Question_# : "+(index+1);
 
-				//Populating the data and options
 				document.getElementById("ques1").innerHTML = data[index].name[0];
 				document.getElementById("option1").value = data[index].name[1];
 				document.getElementById("option2").value = data[index].name[2];
@@ -83,12 +64,15 @@
 			}
 			function next() {
 
+
 				localStorage.index = Number(localStorage.index)+1;
 				let data = JSON.parse(localStorage.d);
 				let index = Number(localStorage.index);
 				
+				
 				populateData(index, data);
-								
+				
+				
 			}
 			function prev() {
 				localStorage.index = Number(localStorage.index)-1;
@@ -165,47 +149,6 @@
 				document.getElementById("prevclick").style.visibility = "hidden";
 				document.getElementById("submitclick").style.visibility = "hidden";
 				document.getElementById("timer").style.visibility = "hidden";
-
-				chartGeneration();
-			}
-			function chartGeneration() {
-				
-				//dataPoints. 
-				var dps = [];   
-
-				//getting the score table
-				let score_t = localStorage.score;
-
-				let score_current = score_t.split(',').map(function(item) {
-				    return parseInt(item, 10);
-				});
-				for(let i = 1; i < score_current.length; i++) {
-					/*dps[i] = {};
-					dps[i].x = i;
-					dps[i].y = score_current[i];*/
-					dps.push({x: i,y: score_current[i]});
-
-				}
-				//console.log(dps);
-				
-				var chart = new CanvasJS.Chart("chartContainer",{
-			      	title :{
-			      		text: "Quiz Statistics"
-			      	},
-			      	axisX: {						
-			      		title: "Attemp_#"
-			      	},
-			      	axisY: {						
-			      		title: "score"
-			      	},
-			      	data: [{
-			      		type: "line",
-			      		dataPoints : dps
-			      	}]
-			     });
-				chart.render();
-				
-
 			}
 			
  
@@ -248,22 +191,20 @@
 			    	<p id="option4p">Option three is disabled </p>
 			  	</label>
 			</div>
-			<div id="outer_button">	
-				<button id="prevclick" class="btn btn-primary inner" onclick="prev()">prev</button>
-				<button id="nextclick" class="btn btn-success inner" onclick="next()">Next</button>
-				<button id="submitclick" class="btn btn-warning inner" onclick="submit()">submit</button>
-			</div>
+				
+			<button id="prevclick" class="btn btn-primary" onclick="prev()">prev</button>
+			<button id="nextclick" class="btn btn-success" onclick="next()">Next</button>
+			<button id="submitclick" class="btn btn-warning" onclick="submit()">submit</button>
 			
 			
-			<div id="chartContainer" style="height: 300px; width: 60%;"></div>
+			
+			
 		</div>
 		<script>
 			//var mydata = JSON.parse(data);
 			//console.log(mydata[1]);
 			window.onload = function(){
 			  	
-				let data_template = '[{"name": ["What is Capital of India", "Mumbai", "Chennai", "Kolkata", "Delhi", "Delhi", "no"]},	{"name": ["What is Capital of China", "shanghai", "beijing", "macao", "tibbet", "beijing", "no"]},{"name": ["What is Capital of USA", "washinton_dc", "new_york", "cancas", "los_angeles", "washinton_dc", "no"]},{"name": ["What is Capital of Australia", "sydney", "canberra", "some_city", "kangaroo", "canberra", "no"]},{"name": ["What is Capital of Japan", "osaka", "kyoto", "tokyo", "hiroshima", "tokyo", "no"]}]';
-				localStorage.d = data_template;
 				
 				var timer = 60000;
 				setInterval(function(){

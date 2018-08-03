@@ -1,5 +1,16 @@
 # quiz_app
 
+**Tasks to be updated**
+
+- [x] Timer Generation
+- [x] Login Functionality
+- [x] CSS on Login and quiz page
+- [x] submit functionality
+- [x] next, prev functionality 
+- [ ] fix bug on prev button
+- [x] Submission History
+
+
 ### Setting up Local Storage Database:
 
 For localStorage, we need JSON data. Below is a sample data.
@@ -21,37 +32,10 @@ localStorage.d = data;
 ```save()``` function is used to record answers in quiz.
 ```submit()``` function is used to submit the quiz
 
-### Setting up Login Credentials:
+### Steeing up Login Credentials:
 Write the following statements in console of Developer tools of Chrome.
 ```
-let userdata = [];
-userdata.push({username: "any_username", password: "any_password"});
-localStorage.userdata = JSON.stringify(userdata);
+localStorage.username = "Your_Name";
+localStorage.password = "Password_of_your_choise";
 ``` 
-
-### Setting up Score Details:
-Write the following statements in console of Developer tools of Chrome before the first execution of application.
-```localStorage.score = ",0,0,2,0,5";```
-
-
-
-
-#### Tasks to be updated
-
-**Functionality**
-- [x] Timer Generation
-- [x] Login
-- [x] Score generation
-- [x] Submission history
-- [x] navigation during quiz 
-- [x] registeration form
-- [ ] navigation Bar
-- [ ] weka
-
-
-**Issues**
-- [x] correct->incorrect => -1
-- [x] one radio button always checked 
-- [x] Chart generation
-- [ ] use display=none insted of visibility = hidden
 

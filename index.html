@@ -31,126 +31,12 @@
 			}
 
 		</style>
-
-		<script type="text/javascript">
-
-			//Global Onload Function
-			window.onload = function() {
-				document.getElementById("option_div_1").style.display = "none";
-
-				document.getElementById("newuser").style.display = "block";
-				document.getElementById("login").style.display = "block";
-				document.getElementById("register_b").style.display = "none";
-				//document.getElementById('option_div_1').style.visibility = "hidden"l;
-
-
-			}
-
-			function loginValidate() {
-
-				let name = document.getElementById('username').value;
-				let pass = document.getElementById('password').value;
-
-				//hide the #option_div_1 div
-				let userdata = JSON.parse(localStorage.userdata);
-				let found = userdata.some(function (el) {
-				    return el.username === name;
-				});
-
-				if(found) {
-					let found1 = userdata.some(function (el) {
-				    	return el.password === pass;
-					});
-					if(found1) {
-						alert("Login Successful");
-						window.location="./home.html";
-						return true;
-					}
-					else {
-						alert("Password incorrect");
-						return false;
-					}
-					
-
-				}
-				else {
-					alert("Usernmae incorrect");
-				return false;
-				}
-				
-
-				/*if(name.value != localStorage.username) {
-					alert("Username incorrect");
-					return false;
-				}
-				if(pass.value != localStorage.password) {
-					alert("Passworde incorrect");
-					return false;
-				}*/
-
-				alert("Login Successful");
-				window.location="./home.html";
-				
-			} 
-
-			function register() {
-
-				document.getElementById("heading").innerHTML = "Register Credentials";
-				document.getElementById("option_div_1").style.display = "block";
-				document.getElementById("newuser").style.display = "none";
-				document.getElementById("login").style.display = "none";
-				document.getElementById("register_b").style.display = "block";
-				//registration validation credentials
-			}
-
-			function registerValidate() {
-				let name = document.getElementById('username').value;
-				let pass = document.getElementById('password').value;
-				let retypepass = document.getElementById('retypepassword').value;
-
-				let userdata = JSON.parse(localStorage.userdata);
-				
-				//check if username already exists
-				let flag = 0;
-				for(let i = 0; i < userdata.length; i++) {
-					if(userdata[i].username == name) {
-						alert("USername already exists");
-						return false;
-					}
-				}
-
-				//check is usernanme is empty
-				if(name == "") {
-					alert("USERNAME CANNOT BE EMPTY");
-					return false;
-				}
-				if(pass == "") {
-					alert("PASSOWRD cannot be empty");
-					return false;
-				}
-
-
-				//DO passwords match
-				if(pass != retypepass) {
-					alert("Passwords should match");
-					return false;
-				}	
-
-				//insert username and passeword into userdata
-				userdata.push({username: name, password: pass});
-				localStorage.userdata = JSON.stringify(userdata);
-
-				alert("registration Successful");
-				window.location="./index.html";
-
-			}
-		</script>
 	</head>
 	<body>	
 
 		<div id="container" align="center">
 			<h2 align="center">Quiz</h2>
-			<h4 id="heading">Login Credentials</h4><br>
+			<h4><b>Login Credentials</b></h4> <br>
 			<form action="./home.html" padding-left: 50px;">
 				<div class="form-group">
 			    	<label >Enter your Username</label>
@@ -160,13 +46,7 @@
 			    	<label>Enter your Password</label>
 			    	<input type="password" class="form-control" id="password" placeholder="Your Password">
 			  	</div>
-			  	<div class="form-group" id="option_div_1">
-			    	<label>Please retype your password</label>
-			    	<input type="password" class="form-control" id="retypepassword" placeholder="retype Your Password">
-			  	</div>
-			  	<button type="button" class="btn btn-default" id="login" onclick="return loginValidate();">Login</button>
-			  	<button type="button" class="btn btn-primary" id="newuser" onclick="return register();">New User ..?</button>
-			  	<button type="button" class="btn btn-primary" id="register_b" onclick="return registerValidate();">register</button>
+			  	<button type="button" class="btn btn-default" onclick="return validate();">Submit</button>
 			</form>
 		</div>
 	</body>
