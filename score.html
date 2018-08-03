@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<script type="text/javascript">
+			window.onload = function() {
+				document.getElementById("details").style.visibility="hidden";
+				displayScore();
+
+			}
+		</script>
+
+		<!-- Load bootstrap -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+			<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+			<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- Canvas.js CDN-->
+		<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+		<script type="text/javascript">
+			
+			function displayScore() {
+				//console.log(localStorage.points);
+				let score = Number(localStorage.points);
+				//display the total score
+				document.getElementById("display_score").innerHTML = "Your Score is : <mark>" + score*10 + "</mark><br>";
+			}
+
+			function quiz_analysis() {
+				document.getElementById("details").style.visibility="visible";
+				let choice = JSON.parse(localStorage.choice);
+				let data = JSON.parse(localStorage.d);
+				//data[index].name[5]
+				let obtained_marks = "";
+				let user_answer = "";
+				let correct_answer = "";
+				let final_str = "";
+				var table = document.getElementById("details");
+				for(let i = 0; i < 5; i++) {
+					correct_answer = data[i].name[5];
+
+					if(choice[i] == undefined) {
+						user_answer = "N/A";
+					}
+					else {
+						user_answer = choice[i];
+					}
+					let td1 = document.getElementById(""+i+"0");
+					let td2 = document.getElementById(""+i+"1");
+
+					td1.innerHTML = user_answer;
+					td2.innerHTML = correct_answer;
+
+					if(user_answer == correct_answer) {
+				    	td1.style.color = "blue";
+				    }
+				    else {
+				    	td1.style.color = "red";
+				    }
+
+
+					/*
+					var tr = document.createElement('tr');   
+				    var td1 = document.createElement('td');
+				    //td1.style.width = "50px";
+				    if(user_answer == correct_answer) {
+				    	td1.style.color = "blue";
+				    }
+				    else {
+				    	td1.style.color = "red";
+				    }
+				    var td2 = document.createElement('td');
+				    //td2.style.width = "50px";
+				    var text1 = document.createTextNode(user_answer);
+				    var text2 = document.createTextNode(correct_answer);
+
+				    //td1.style.fontWeight = "700";
+				    //td2.style.fontWeight = "700";
+
+
+				    td1.appendChild(text1);
+				    td2.appendChild(text2);
+				    tr.appendChild(td1);
+				    tr.appendChild(td2);
+
+				    table.appendChild(tr);
+				    */
+				}
+
+			}
+			function history() {
+				let score_t = localStorage.score;
+				let score_overall = score_t.split(',').map(function(item) {
+				    return parseInt(item, 10);
+				});
+				let str_print = "";
+				for(let i = 1; i < score_overall.length; i++) {
+					str_print += "Submission_# : <mark>"+i+"</mark>     Score : <mark>"+score_overall[i]*10+"</mark> <br>";
+				}
+
+				document.getElementById("history").innerHTML = str_print;
+			}
+			function chartGeneration() {
+				
+				//dataPoints. 
+				var dps = [];   
+
+				//getting the score table
+				let score_t = localStorage.score;
+
+				let score_current = score_t.split(',').map(function(item) {
+				    return parseInt(item, 10);
+				});
+				for(let i = 1; i < score_current.length; i++) {
+					dps.push({x: i,y: score_current[i]});
+
+				}
+				//console.log(dps);
+				
+				var chart = new CanvasJS.Chart("chartContainer",{
+			      	title :{
+			      		text: "Quiz Statistics"
+			      	},
+			      	axisX: {						
+			      		title: "Attemp_#"
+			      	},
+			      	axisY: {						
+			      		title: "score"
+			      	},
+			      	data: [{
+			      		type: "line",
+			      		dataPoints : dps
+			      	}]
+			     });
+				chart.render();
+				
+
+			}
+		</script>
+	</head>
+	<body>	
+
+		<div align="center">
+			<h4 id="display_score"></h4>
+			
+			<button id="prevclick" class="btn btn-primary " onclick="quiz_analysis()">Quiz Analysis</button>
+			<button id="nextclick" class="btn btn-success " onclick="chartGeneration()">Submission Analysis</button>
+			<button id="submitclick" class="btn btn-warning " onclick="history()">Submission History</button>
+			<br>
+			<table id="details" class="table table-striped" style="width: 50%">
+ 			
+ 				<tr>
+ 					<th>Your Answer</th>
+ 					<th>Correct Answer</th>
+ 				</tr>
+ 				<tr>
+ 					<td id="00"></td>
+ 					<td id="01"></td>
+ 				</tr>
+ 				<tr>
+ 					<td  id="10"></td>
+ 					<td id="11"></td>
+ 				</tr>
+
+				<tr>
+ 					<td id="20"></td>
+ 					<td id="21"></td>
+ 				</tr>
+
+				<tr>
+ 					<td id="30"></td>
+ 					<td id="31"></td>
+ 				</tr>
+
+				<tr>
+ 					<td  id="40"></td>
+ 					<td id="41"></td>
+ 				</tr>
+			</table>
+			<h4 id="history"></h4>
+			<div id="chartContainer" style="width: 70%"></div>
+		</div>	
+	</body>
+</html>

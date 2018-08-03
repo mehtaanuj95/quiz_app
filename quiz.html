@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type="text/javascript" src="data.json"></script> 
-		<script type="text/javascript" src="script.js"></script> 
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 		<!-- Load bootstrap -->
@@ -15,8 +14,7 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-		<!-- Canvas.js CDN-->
-		<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+		
 
 		<style type="text/css">
 			 #container {
@@ -125,9 +123,17 @@
 					}
 					data[index].name[6] = "yes";
 				}
+				let choice = JSON.parse(localStorage.choice);
+				choice[index] = answer;
+				localStorage.choice = JSON.stringify(choice);
 
 			}
 			function submit() {
+				let score = Number(localStorage.points);
+				localStorage.score += ","+score;
+				console.log(JSON.parse(localStorage.choice));
+				window.location = "./score.html";
+
 
 				let score = Number(localStorage.points);
 				//display the total score
@@ -168,45 +174,7 @@
 
 				chartGeneration();
 			}
-			function chartGeneration() {
-				
-				//dataPoints. 
-				var dps = [];   
-
-				//getting the score table
-				let score_t = localStorage.score;
-
-				let score_current = score_t.split(',').map(function(item) {
-				    return parseInt(item, 10);
-				});
-				for(let i = 1; i < score_current.length; i++) {
-					/*dps[i] = {};
-					dps[i].x = i;
-					dps[i].y = score_current[i];*/
-					dps.push({x: i,y: score_current[i]});
-
-				}
-				//console.log(dps);
-				
-				var chart = new CanvasJS.Chart("chartContainer",{
-			      	title :{
-			      		text: "Quiz Statistics"
-			      	},
-			      	axisX: {						
-			      		title: "Attemp_#"
-			      	},
-			      	axisY: {						
-			      		title: "score"
-			      	},
-			      	data: [{
-			      		type: "line",
-			      		dataPoints : dps
-			      	}]
-			     });
-				chart.render();
-				
-
-			}
+			
 			
  
 		</script>
@@ -265,12 +233,12 @@
 				let data_template = '[{"name": ["What is Capital of India", "Mumbai", "Chennai", "Kolkata", "Delhi", "Delhi", "no"]},	{"name": ["What is Capital of China", "shanghai", "beijing", "macao", "tibbet", "beijing", "no"]},{"name": ["What is Capital of USA", "washinton_dc", "new_york", "cancas", "los_angeles", "washinton_dc", "no"]},{"name": ["What is Capital of Australia", "sydney", "canberra", "some_city", "kangaroo", "canberra", "no"]},{"name": ["What is Capital of Japan", "osaka", "kyoto", "tokyo", "hiroshima", "tokyo", "no"]}]';
 				localStorage.d = data_template;
 				
-				var timer = 60000;
+				var timer = 120000;
 				setInterval(function(){
 					timer-=1000;
 					document.getElementById("timer").innerHTML="00:"+(timer/1000);
-					if(timer===0) {
-						submit();
+					if(timer == 0) {
+						return submit();
 					}
 				}, 1000); 
 
@@ -282,10 +250,16 @@
 			  	var arr = [0,1,2,3,4];
 			  	arr = shuffle(arr);
 
+			  	//array for user's choice
+			  	let choice = [];
+			  	localStorage.choice = JSON.stringify(choice);
+
+
+
 			  	let data = JSON.parse(localStorage.d);
 			  	let index = Number(localStorage.index);
 			  	populateData(index, data);
-	 	
+	 			
 			};
 		</script>
 		
