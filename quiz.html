@@ -129,50 +129,13 @@
 
 			}
 			function submit() {
-				let score = Number(localStorage.points);
-				localStorage.score += ","+score;
+				let score_current = Number(localStorage.points);
+				localStorage.score += ","+score_current;
+				console.log(localStorage.score );
 				console.log(JSON.parse(localStorage.choice));
+				
 				window.location = "./score.html";
-
-
-				let score = Number(localStorage.points);
-				//display the total score
-				document.getElementById("question").innerHTML = "Your Score is : <mark>" + score*10 + "</mark><br>";
-				
-				let times = Number(localStorage.times)+1;
-				console.log("times : "+times);
-				//Save the history of scores
-				let score_t = localStorage.score;
-				console.log("score_t : "+score_t );
-
-				let score_overall = score_t.split(',').map(function(item) {
-				    return parseInt(item, 10);
-				});
-				console.log(score_overall);
-				let str_print = "";
-				for(let i = 1; i < score_overall.length; i++) {
-					str_print += "Submission_# : <mark>"+i+"</mark>     Score : <mark>"+score_overall[i]*10+"</mark> <br>";
-				}
-				document.getElementById("ques1").innerHTML = str_print;
-				
-				localStorage.score += ","+score;
-
-				//.style.visibility = "hidden";
-				//document.getElementById("ques1").style.visibility = "hidden";
-				document.getElementById("option1").style.visibility = "hidden";
-				document.getElementById("option2").style.visibility = "hidden";
-				document.getElementById("option3").style.visibility = "hidden";
-				document.getElementById("option4").style.visibility = "hidden";
-				document.getElementById("option1p").style.visibility = "hidden";
-				document.getElementById("option2p").style.visibility = "hidden";
-				document.getElementById("option3p").style.visibility = "hidden";
-				document.getElementById("option4p").style.visibility = "hidden";
-				document.getElementById("nextclick").style.visibility = "hidden";
-				document.getElementById("prevclick").style.visibility = "hidden";
-				document.getElementById("submitclick").style.visibility = "hidden";
-				document.getElementById("timer").style.visibility = "hidden";
-
-				chartGeneration();
+		
 			}
 			
 			
